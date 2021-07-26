@@ -16,13 +16,7 @@ public class CarController {
 
     @GetMapping(value = "/cars")
     public String getCars(@RequestParam(value = "count", defaultValue = "0") int count, Model model) {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("BMW", 420, 98000));
-        cars.add(new Car("Toyota", 180, 60000));
-        cars.add(new Car("Lada", 90, 250000));
-        cars.add(new Car("Ford", 115, 120000));
-        cars.add(new Car("Mazda", 250, 13000));
-        cars = CarService.getCarsByCount(cars, count);
+        List<Car> cars = CarService.getCarsByCount(CarService.makeCarsList(), count);
         model.addAttribute("getCars", cars);
         return "cars";
     }
